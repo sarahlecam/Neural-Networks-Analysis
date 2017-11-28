@@ -53,7 +53,7 @@ def run_RFR(n_trees, depth):
     plt.title(str(n_trees) + " " + str(tree_title) + " with Depth " + str(depth))
     plt.savefig("mona_lisa_tree_"+str(n_trees)+"_depth_"+str(depth)+".png")
 
-def prune_RFR_(n_trees, depth, split):
+def prune_RFR(n_trees, depth, split):
     rf = RandomForestRegressor(n_estimators=n_trees, max_depth=depth, min_samples_split=split)
     rf.fit(coords, pixels)
     pred = np.zeros([M,N,3])
@@ -76,23 +76,24 @@ def run_KNR():
         for j in range(N):
             pred[i,j] = knn.predict(np.array([i,j]).reshape(1,-1))
     plt.imshow(pred)
+    plt.title("K-NN Regressor")
     plt.savefig("mona_lisa_KNR.png")
 
 run_KNR()
 
-# run_RFR(1, None)
+run_RFR(1, None)
 
-# # Single decision tree with depths 1, 2, 3, 5, 10, and 15.
-# run_RFR(1, 1)
-# run_RFR(1, 2)
-# run_RFR(1, 3)
-# run_RFR(1, 5)
-# run_RFR(1, 10)
-# run_RFR(1, 15)
+# Single decision tree with depths 1, 2, 3, 5, 10, and 15.
+run_RFR(1, 1)
+run_RFR(1, 2)
+run_RFR(1, 3)
+run_RFR(1, 5)
+run_RFR(1, 10)
+run_RFR(1, 15)
 
-# # tree depth 7 with tree number 1, 3, 5, 10, and 100
-# run_RFR(1, 7)
-# run_RFR(3, 7)
-# run_RFR(5, 7)
-# run_RFR(10, 7)
+# tree depth 7 with tree number 1, 3, 5, 10, and 100
+run_RFR(1, 7)
+run_RFR(3, 7)
+run_RFR(5, 7)
+run_RFR(10, 7)
 run_RFR(100, 7)
